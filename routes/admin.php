@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Auth\LoginController;
+use App\Http\Controllers\Admin\Notification\FirebasePushNotificationController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('login-2', function () { // remove this route if you don't need it
@@ -8,6 +9,9 @@ Route::get('login-2', function () { // remove this route if you don't need it
 })->name('login-2');
 
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
+// push notification testing
+Route::get('notification', [FirebasePushNotificationController::class, 'notification'])->name('notification');
+
 Route::post('login', [LoginController::class, 'login']);
 
 Route::middleware(['auth'])->group(function () {
@@ -18,5 +22,5 @@ Route::middleware(['auth'])->group(function () {
     })->name('dashboard');
 
     // remove this route if you don't need it
-    require_once __DIR__.'/component.php';
+    require_once __DIR__ . '/component.php';
 });
