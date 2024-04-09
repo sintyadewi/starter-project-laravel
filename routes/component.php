@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Resources\UserResource;
-use App\Models\User;
+use App\Modules\Membership\Models\User;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('component')->as('component.')->group(function () {
