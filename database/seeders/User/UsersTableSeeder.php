@@ -2,7 +2,9 @@
 
 namespace Database\Seeders\User;
 
+use App\Modules\Membership\Models\User;
 use Illuminate\Database\Seeder;
+use jeremykenedy\LaravelRoles\Models\Role;
 
 class UsersTableSeeder extends Seeder
 {
@@ -29,5 +31,15 @@ class UsersTableSeeder extends Seeder
         foreach ($permissions as $permission) {
             $newUser->attachPermission($permission);
         }
+
+        
+        /** @var Role $roleUser */
+        $roleUser = Role::query()->where('slug', 'user')->first();
+
+        User::factory(50)
+            ->create()
+            ->each(function (User $user) use ($roleUser) {
+                $user->attachRole($roleUser);
+            });
     }
 }
