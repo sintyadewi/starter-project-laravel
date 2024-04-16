@@ -11,13 +11,15 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use jeremykenedy\LaravelRoles\Traits\HasRoleAndPermission;
 use Laravel\Sanctum\HasApiTokens;
+use Timedoor\Filter\FilterTrait;
 
 /**
  * @method \Illuminate\Database\Eloquent\Collection<int, \jeremykenedy\LaravelRoles\Models\Role> getRoles()
  */
 class User extends Authenticatable
 {
-    use HasApiTokens,
+    use FilterTrait,
+        HasApiTokens,
         HasFactory,
         Notifiable,
         HasRoleAndPermission;
