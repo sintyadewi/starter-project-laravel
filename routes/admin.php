@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Notification\FirebasePushNotificationController;
+use App\Http\Controllers\Admin\User\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('login-2', function () { // remove this route if you don't need it
@@ -11,6 +12,9 @@ Route::get('login-2', function () { // remove this route if you don't need it
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
 // push notification testing
 Route::get('notification', [FirebasePushNotificationController::class, 'notification'])->name('notification');
+
+// try to use filter on user 
+Route::get('users', [UserController::class, 'index'])->name('users');
 
 Route::post('login', [LoginController::class, 'login']);
 
