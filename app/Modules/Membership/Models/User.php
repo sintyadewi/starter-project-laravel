@@ -5,6 +5,7 @@ namespace App\Modules\Membership\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use Database\Factories\UserFactory;
+use App\Modules\Membership\Traits\Fcmable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -18,7 +19,8 @@ use Timedoor\Filter\FilterTrait;
  */
 class User extends Authenticatable
 {
-    use FilterTrait,
+    use Fcmable,
+        FilterTrait,
         HasApiTokens,
         HasFactory,
         Notifiable,
