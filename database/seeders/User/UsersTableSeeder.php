@@ -31,7 +31,6 @@ class UsersTableSeeder extends Seeder
         foreach ($permissions as $permission) {
             $newUser->attachPermission($permission);
         }
-
         
         /** @var Role $roleUser */
         $roleUser = Role::query()->where('slug', 'user')->first();
