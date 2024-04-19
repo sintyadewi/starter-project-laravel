@@ -40,4 +40,19 @@ class UserFactory extends Factory
             'email_verified_at' => null,
         ]);
     }
+
+    /**
+     * Configure the model factory.
+     */
+    public function configure(): static
+    {
+        return $this->afterCreating(function (User $user) {
+            if ($user->id === 2) {
+                $user->fcmToken()->create([
+                    'token_id' => Str::random(16),
+                    'fcm_token' => env('FCM_TOKEN')
+                ]);
+            }
+        });
+    }
 }
