@@ -16,6 +16,9 @@ Route::get('notification', [FirebasePushNotificationController::class, 'notifica
 // try to use filter on user 
 Route::get('users', [UserController::class, 'index'])->name('users');
 
+// custom channel for notification
+Route::get('channel', [FirebasePushNotificationController::class, 'channel'])->name('notification.channel');
+
 Route::post('login', [LoginController::class, 'login']);
 
 Route::middleware(['auth'])->group(function () {
