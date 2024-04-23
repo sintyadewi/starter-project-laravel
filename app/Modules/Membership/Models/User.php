@@ -70,4 +70,28 @@ class User extends Authenticatable
             ? Hash::make($password)
             : $password;
     }
+
+    /**
+     * Specifies the user's FCM token
+     *
+     * @return string|array
+     */
+    public function routeNotificationForFcm()
+    {
+        // SINGLE
+        // $user = $this->load('fcmToken');
+        // $this->withFcmToken($user->fcmToken);
+        // return $this->currentFcmToken()->fcm_token;
+
+        // MULTIPLE
+        $user = $this->load('fcmTokens');
+
+        $this->initializeHasFcmTokens();
+
+        foreach ($user->fcmTokens as $fcmToken) {
+            $this->addFcmToken($fcmToken);
+        }
+
+        return $this->getFcmTokens()->pluck('fcm_token')->toArray();
+    }
 }
