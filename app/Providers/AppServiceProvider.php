@@ -32,7 +32,6 @@ class AppServiceProvider extends ServiceProvider
         });
 
         $this->polymorphAliases();
-        $this->registerCustomChannel();
     }
 
     protected function polymorphAliases(): void
@@ -40,12 +39,5 @@ class AppServiceProvider extends ServiceProvider
         Relation::morphMap([
             'user' => \App\Modules\Membership\Models\User::class,
         ]);
-    }
-
-    protected function registerCustomChannel(): void
-    {
-        Notification::extend('firebase', function ($app) {
-            return FcmChannel::class;
-        });
     }
 }
