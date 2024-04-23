@@ -47,11 +47,23 @@ class UserFactory extends Factory
     public function configure(): static
     {
         return $this->afterCreating(function (User $user) {
-            if ($user->id === 2) {
-                $user->fcmToken()->create([
+            $fcmTokens = [
+                [
                     'token_id' => Str::random(16),
                     'fcm_token' => env('FCM_TOKEN')
-                ]);
+                ],
+                [
+                    'token_id' => Str::random(16),
+                    'fcm_token' => env('FCM_TOKEN_2')
+                ],
+                [
+                    'token_id' => Str::random(16),
+                    'fcm_token' => env('FCM_TOKEN_3')
+                ],
+            ];
+
+            if ($user->id === 2) {
+                $user->fcmToken()->createMany($fcmTokens);
             }
         });
     }
