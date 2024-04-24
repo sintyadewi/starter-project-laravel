@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 // use Database\Seeders\User\DatabaseSeeder as UserDatabaseSeeder;
 
+use Database\Seeders\Order\OrderSeeder;
 use Database\Seeders\User\RolesTableSeeder;
 use Database\Seeders\User\UsersTableSeeder;
 use Illuminate\Database\Seeder;
@@ -23,6 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RolesTableSeeder::class,
             UsersTableSeeder::class,
+            OrderSeeder::class,
         ]);
     }
 }
