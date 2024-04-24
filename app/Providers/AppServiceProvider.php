@@ -38,6 +38,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Relation::morphMap([
             'user' => \App\Modules\Membership\Models\User::class,
+            'order' => \App\Modules\Order\Models\Order::class,
         ]);
     }
 }
