@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Auth\LoginController;
+use App\Http\Controllers\Admin\News\NewsController;
 use App\Http\Controllers\Admin\Notification\FirebasePushNotificationController;
 use App\Http\Controllers\Admin\Order\OrderController;
 use App\Http\Controllers\Admin\User\UserController;
@@ -22,6 +23,10 @@ Route::get('channel', [FirebasePushNotificationController::class, 'channel'])->n
 
 // insert record to activity_log via route
 Route::get('create-order', [OrderController::class, 'create'])->name('create-order-static');
+
+// testing of using slug
+Route::get('store-news', [NewsController::class, 'store'])->name('store-news');
+Route::get('update-news', [NewsController::class, 'update'])->name('update-news');
 
 Route::post('login', [LoginController::class, 'login']);
 
