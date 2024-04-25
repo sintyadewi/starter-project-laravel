@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\Export\ExportController;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return inertia('welcome');
 });
+
+Route::get('/export', [ExportController::class, 'export']);
