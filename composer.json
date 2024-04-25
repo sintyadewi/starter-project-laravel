@@ -25,6 +25,7 @@
         "spatie/laravel-activitylog": "^4.8",
         "tightenco/ziggy": "^1.5",
         "timedoor/filter": "^1.0",
+        "timedoor/laravel-filter": "^1.1",
         "timedoor/laravel-role-js": "^0.1.1"
     },
     "require-dev": {
