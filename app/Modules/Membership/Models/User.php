@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use jeremykenedy\LaravelRoles\Traits\HasRoleAndPermission;
 use Laravel\Sanctum\HasApiTokens;
 use Timedoor\Filter\FilterTrait;
+use Timedoor\LaravelFilter\Concerns\Filterable;
 
 /**
  * @method \Illuminate\Database\Eloquent\Collection<int, \jeremykenedy\LaravelRoles\Models\Role> getRoles()
@@ -20,7 +21,8 @@ use Timedoor\Filter\FilterTrait;
 class User extends Authenticatable
 {
     use Fcmable,
-        FilterTrait,
+        Filterable,
+        // FilterTrait,
         HasApiTokens,
         HasFactory,
         Notifiable,
