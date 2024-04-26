@@ -25,8 +25,8 @@ class ExportDomController extends Controller
 
     public function exportTest()
     {
-        $pdf = Pdf::loadView('test');
+        $pdf = Pdf::loadView('caroline');
 
-        return $pdf->stream('test.pdf');
+        return $pdf->stream('caroline.pdf');
     }
 }
