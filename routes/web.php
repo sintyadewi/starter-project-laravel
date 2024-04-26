@@ -19,3 +19,4 @@ Route::get('/', function () {
 });
 
 Route::get('/export-dom', [ExportDomController::class, 'export']);
+Route::get('/export-dom-test', [ExportDomController::class, 'exportTest']);
