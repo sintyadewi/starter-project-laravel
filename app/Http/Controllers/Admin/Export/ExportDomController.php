@@ -20,6 +20,13 @@ class ExportDomController extends Controller
             'users' => $userData,
         ]);
 
-        return $pdf->stream('invoice.pdf');
+        return $pdf->stream('table.pdf');
+    }
+
+    public function exportTest()
+    {
+        $pdf = Pdf::loadView('test');
+
+        return $pdf->stream('test.pdf');
     }
 }
