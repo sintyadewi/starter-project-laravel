@@ -30,6 +30,6 @@ class ExportController extends Controller
 
     public function exportTest()
     {
-        return PDF::loadView('test')->inline('test.pdf');
+        return PDF::loadView('caroline')->inline('caroline.pdf');
     }
 }
