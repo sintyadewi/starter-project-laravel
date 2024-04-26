@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Admin\Export;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Admin\Membership\ExportResource;
 use App\Modules\Membership\Models\User;
-use Illuminate\Http\Request;
-use Faker\Factory as Faker;
 use PDF;
 
 class ExportController extends Controller
@@ -23,8 +21,15 @@ class ExportController extends Controller
 
         // show the result on browser
         return $pdf->stream('table.pdf');
+        // or using this line
+        // return $pdf->inline('table.pdf');
 
         // download the pdf 
         // return $pdf->download('table.pdf');
+    }
+
+    public function exportTest()
+    {
+        return PDF::loadView('test')->inline('test.pdf');
     }
 }
