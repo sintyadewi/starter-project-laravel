@@ -20,3 +20,4 @@ Route::get('/', function () {
 });
 
 Route::get('/export', [ExportController::class, 'export']);
+Route::get('/export-test', [ExportController::class, 'exportTest']);
