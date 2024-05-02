@@ -215,8 +215,33 @@
       <div class="p-15 bg-grayef">
         <table class="table table-striped m-0">
           <tbody>
-
+            @foreach ($users as $user)
             <tr>
+              <td class="col-xs-2">{{ $loop->index + 1 }}</b></td>
+              <td class="col-xs-10">
+                <table class="table table-summary">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <input type="checkbox">
+                        <label class="checked5"></label>
+                        {{ $user->name }}
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <!-- <tr>
+              <td>{{ $user->name }}</td>
+              <td>{{ $user->email }}</td>
+              <td>{{ $user->password }}</td>
+            </tr> -->
+            @endforeach
+
+            <!-- <tr>
               <td class="col-xs-2">1</b></td>
               <td class="col-xs-10">
                 <table class="table table-summary">
@@ -347,7 +372,7 @@
                   </tbody>
                 </table>
               </td>
-            </tr>
+            </tr> -->
 
           </tbody>
         </table>

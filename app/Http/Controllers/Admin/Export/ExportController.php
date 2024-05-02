@@ -32,9 +32,9 @@ class ExportController extends Controller
     {
         $users = User::query()->limit(5)->get();
 
-        // dd($users);
-
-        return PDF::loadView('caroline')
+        return PDF::loadView('caroline', [
+            'users' => $users,
+        ])
             ->setPaper('a4')
             ->setOrientation('landscape')
             // ->setOption('margin-bottom', 0)
