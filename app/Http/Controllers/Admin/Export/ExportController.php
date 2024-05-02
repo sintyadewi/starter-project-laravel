@@ -36,8 +36,10 @@ class ExportController extends Controller
             'users' => $users,
         ])
             ->setPaper('a4')
-            ->setOrientation('landscape')
+            ->setOrientation('portrait')
             // ->setOption('margin-bottom', 0)
+            ->setOption('zoom', 0.8)
+            // ->zoom(0.5)
             ->inline('caroline.pdf');
     }
 }
