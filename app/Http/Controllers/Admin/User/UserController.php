@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin\User;
 
 use App\Http\Controllers\Controller;
+use App\Modules\Membership\Exports\UsersExport;
 use App\Modules\Membership\Filters\UserFilter;
 use App\Modules\Membership\Models\User;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
@@ -20,5 +22,10 @@ class UserController extends Controller
         ])->get();
 
         dd($users);
+    }
+
+    public function exportExcel()
+    {
+        return Excel::download(new UsersExport, 'users.xlsx');
     }
 }
