@@ -4,6 +4,7 @@ namespace App\Modules\Membership\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Channels\DatabaseChannel;
 use Illuminate\Notifications\Notification;
 use NotificationChannels\Fcm\FcmChannel;
 use NotificationChannels\Fcm\FcmMessage;
@@ -30,7 +31,7 @@ class SendPushNotification extends Notification implements ShouldQueue
      */
     public function via(object $notifiable): array
     {
-        return [FcmChannel::class, 'database'];
+        return [FcmChannel::class, DatabaseChannel::class];
     }
 
     /**
