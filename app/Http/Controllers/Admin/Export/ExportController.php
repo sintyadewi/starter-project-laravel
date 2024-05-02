@@ -30,6 +30,14 @@ class ExportController extends Controller
 
     public function exportTest()
     {
-        return PDF::loadView('caroline')->inline('caroline.pdf');
+        $users = User::query()->limit(5)->get();
+
+        // dd($users);
+
+        return PDF::loadView('caroline')
+            ->setPaper('a4')
+            ->setOrientation('landscape')
+            // ->setOption('margin-bottom', 0)
+            ->inline('caroline.pdf');
     }
 }
