@@ -35,7 +35,7 @@ class UsersTableSeeder extends Seeder
         /** @var Role $roleUser */
         $roleUser = Role::query()->where('slug', 'user')->first();
 
-        User::factory(50)
+        User::factory(10000)
             ->create()
             ->each(function (User $user) use ($roleUser) {
                 $user->attachRole($roleUser);
