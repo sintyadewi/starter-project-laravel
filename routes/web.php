@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\User\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return inertia('welcome');
 });
+
+Route::get('users/export', [UserController::class, 'exportExcel']);
