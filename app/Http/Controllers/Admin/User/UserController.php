@@ -3,11 +3,15 @@
 namespace App\Http\Controllers\Admin\User;
 
 use App\Http\Controllers\Controller;
-use App\Modules\Membership\Exports\UsersExport;
+use App\Modules\Membership\Exports\UserExportByCollection;
+use App\Modules\Membership\Exports\UserExportByQuery;
+use App\Modules\Membership\Exports\UserExportByView;
 use App\Modules\Membership\Filters\UserFilter;
 use App\Modules\Membership\Models\User;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Excel as ExcelExcel;
 use Maatwebsite\Excel\Facades\Excel;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class UserController extends Controller
 {
@@ -24,8 +28,18 @@ class UserController extends Controller
         dd($users);
     }
 
-    public function exportExcel()
+    public function exportByView(): BinaryFileResponse
     {
-        return Excel::download(new UsersExport, 'users.xlsx');
+        return Excel::download(new UserExportByView, 'userView.xlsx');
+    }
+
+    public function exportByQuery(): BinaryFileResponse
+    {
+        return Excel::download(new UserExportByQuery, 'userQuery.xlsx');
+    }
+
+    public function exportByCollection(): BinaryFileResponse
+    {
+        return Excel::download(new UserExportByCollection, 'userCollection.xlsx');
     }
 }
