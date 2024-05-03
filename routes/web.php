@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Sample\SampleController;
 use App\Http\Controllers\Admin\User\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,5 @@ Route::get('/', function () {
 Route::get('/export-view', [UserController::class, 'exportByView']);
 Route::get('/export-query', [UserController::class, 'exportByQuery']);
 Route::get('/export-collection', [UserController::class, 'exportByCollection']);
+
+Route::get('/order-collection', [SampleController::class, 'orderCollection']);
