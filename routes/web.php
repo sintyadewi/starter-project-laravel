@@ -18,4 +18,6 @@ Route::get('/', function () {
     return inertia('welcome');
 });
 
-Route::get('users/export', [UserController::class, 'exportExcel']);
+Route::get('/export-view', [UserController::class, 'exportByView']);
+Route::get('/export-query', [UserController::class, 'exportByQuery']);
+Route::get('/export-collection', [UserController::class, 'exportByCollection']);
