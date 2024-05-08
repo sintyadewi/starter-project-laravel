@@ -23,6 +23,7 @@
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.1",
         "maatwebsite/excel": "^3.1",
+        "predis/predis": "^2.2",
         "spatie/laravel-activitylog": "^4.8",
         "tightenco/ziggy": "^1.5",
         "timedoor/filter": "^1.0",
