@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\Sample\SampleController;
 use App\Http\Controllers\Admin\User\UserController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,8 +21,8 @@ Route::get('/', function () {
     return inertia('welcome');
 });
 
-Route::get('/export-view', [UserController::class, 'exportByView']);
-Route::get('/export-query', [UserController::class, 'exportByQuery']);
-Route::get('/export-collection', [UserController::class, 'exportByCollection']);
+// Route::get('/export-view', [UserController::class, 'exportByView']);
+// Route::get('/export-query', [UserController::class, 'exportByQuery']);
+// Route::get('/export-collection', [UserController::class, 'exportByCollection']);
 
-Route::get('/order-collection', [SampleController::class, 'orderCollection']);
+Route::get('/export', [SampleController::class, 'exportExcel']);
