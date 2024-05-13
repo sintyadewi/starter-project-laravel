@@ -3,6 +3,7 @@
 namespace App\Modules\Sample\Exports;
 
 use App\Modules\Sample\Models\SampleOrder;
+use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Collection;
 use Illuminate\Support\LazyCollection;
@@ -11,21 +12,24 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
 use Maatwebsite\Excel\Concerns\WithCustomChunkSize;
+use Maatwebsite\Excel\Concerns\WithCustomValueBinder;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithStyles;
+use PhpOffice\PhpSpreadsheet\Cell\StringValueBinder;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use PhpOffice\PhpSpreadsheet\Shared\StringHelper;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 
-class SampleOrderExportByCollection implements
+class SampleOrderExportByCollection extends StringValueBinder implements
     FromCollection,
-    // ShouldAutoSize,
+    ShouldAutoSize,
     // ShouldQueue,
     // WithCustomChunkSize,
     WithHeadings,
     WithMapping,
-    WithColumnFormatting
+    WithColumnFormatting,
+    WithCustomValueBinder
 // WithStyles
 {
     use Exportable;
@@ -75,7 +79,7 @@ class SampleOrderExportByCollection implements
         return [
             $order->order_id,
             $order->payment_type,
-            $order->duration,
+            $this->setDots($order->duration),
             $order->price,
             // Date::dateTimeToExcel($order->start_time),
             // Date::dateTimeToExcel($order->end_time),
@@ -83,7 +87,8 @@ class SampleOrderExportByCollection implements
             $order->end_time->format('d F Y'),
             $order->formatted_note,
             $order->platform,
-            $order->samplePackage->price,
+            // $order->samplePackage->price,
+            $this->setDots($order->samplePackage->price),
             $order->samplePackage->hour,
             $order->samplePackage->minute,
             $order->sampleMember->name,
@@ -96,22 +101,23 @@ class SampleOrderExportByCollection implements
             $order->sampleTherapist?->formatted_gender,
             $order->sampleTherapist?->address,
             $order->sampleTherapist?->birth_date->format('d-m-Y'),
-            $order->sampleTherapist?->rating,
+            // $order->sampleTherapist?->rating,
+            $this->setDots($order->sampleTherapist?->rating, 2),
             $order->sampleTherapist?->trainer,
             $order->sampleOrderStatus->status,
         ];
     }
 
-    // public function chunkSize(): int
-    // {
-    //     return 500;
-    // }
+    public function chunkSize(): int
+    {
+        return 2000;
+    }
 
     public function columnFormats(): array
     {
         return [
             // 'E' => NumberFormat::FORMAT_DATE_DDMMYYYY,
-            'M' => NumberFormat::FORMAT_TEXT,
+            // 'M' => NumberFormat::FORMAT_TEXT,
         ];
     }
 
@@ -119,4 +125,9 @@ class SampleOrderExportByCollection implements
     // {
     //     // $sheet->getStyle('B2')->getFont()->setBold(true);
     // }
+
+    protected function setDots($number, ?int $decimals = 0)
+    {
+        return number_format($number, $decimals, '.', '.');
+    }
 }
