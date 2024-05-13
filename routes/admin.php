@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Notification\FirebasePushNotificationController;
 use App\Http\Controllers\Admin\Order\OrderController;
+use App\Http\Controllers\Admin\Order\OrderItemController;
 use App\Http\Controllers\Admin\User\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,9 @@ Route::get('channel', [FirebasePushNotificationController::class, 'channel'])->n
 
 // insert record to activity_log via route
 Route::get('create-order', [OrderController::class, 'create'])->name('create-order-static');
+
+// check the schema event on OrderItem model, listener affected Order model 
+Route::get('update-item', [OrderItemController::class, 'update']);
 
 Route::post('login', [LoginController::class, 'login']);
 
