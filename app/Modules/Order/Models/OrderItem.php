@@ -2,6 +2,7 @@
 
 namespace App\Modules\Order\Models;
 
+use App\Modules\Order\Events\WarrantyAtOrderItemUpdated;
 use Database\Factories\OrderItemFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -21,7 +22,8 @@ class OrderItem extends Model
         'name',
         'quantity',
         'price',
-        'sub_total'
+        'sub_total',
+        'warranty_at',
     ];
 
     protected $casts = [
@@ -29,6 +31,15 @@ class OrderItem extends Model
         'price'     => 'double',
         'sub_total' => 'double',
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::updated(function ($orderItem) {
+            event(new WarrantyAtOrderItemUpdated($orderItem->order));
+        });
+    }
 
     protected static function newFactory(): OrderItemFactory
     {
