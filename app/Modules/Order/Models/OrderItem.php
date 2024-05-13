@@ -32,14 +32,15 @@ class OrderItem extends Model
         'sub_total' => 'double',
     ];
 
-    public static function boot()
-    {
-        parent::boot();
+    // schema of using event listener
+    // public static function boot()
+    // {
+    //     parent::boot();
 
-        static::updated(function ($orderItem) {
-            event(new WarrantyAtOrderItemUpdated($orderItem->order));
-        });
-    }
+    //     static::updated(function ($orderItem) {
+    //         event(new WarrantyAtOrderItemUpdated($orderItem->order));
+    //     });
+    // }
 
     protected static function newFactory(): OrderItemFactory
     {
