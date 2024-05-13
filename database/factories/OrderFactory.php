@@ -21,7 +21,7 @@ class OrderFactory extends Factory
     public function definition(): array
     {
         return [
-            'status' => $this->faker->randomElement(OrderStatusEnum::cases()),
+            'status' => $this->faker->randomElement(OrderStatusEnum::forSeeder()),
         ];
     }
 }
