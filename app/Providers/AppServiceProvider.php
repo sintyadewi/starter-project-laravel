@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Modules\Order\Models\OrderItem;
+use App\Observers\OrderItemObserver;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Notification;
@@ -32,6 +34,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         $this->polymorphAliases();
+        $this->setObservers();
     }
 
     protected function polymorphAliases(): void
@@ -40,5 +43,10 @@ class AppServiceProvider extends ServiceProvider
             'user' => \App\Modules\Membership\Models\User::class,
             'order' => \App\Modules\Order\Models\Order::class,
         ]);
+    }
+
+    protected function setObservers(): void
+    {
+        OrderItem::observe(OrderItemObserver::class);
     }
 }
