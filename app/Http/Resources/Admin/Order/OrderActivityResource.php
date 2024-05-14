@@ -46,7 +46,7 @@ class OrderActivityResource extends JsonResource
     {
         return 'Order number ' . $this->subject->id
             . ' has been ' . $this->event
-            . ' to ' . $this->subject->status->value
+            . ' to ' . $this->resource->getExtraProperty('attributes.status')
             . ' by ' . $this->causer->name;
     }
 }
