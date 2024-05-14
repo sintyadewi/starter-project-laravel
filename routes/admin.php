@@ -20,9 +20,6 @@ Route::get('users', [UserController::class, 'index'])->name('users');
 // custom channel for notification
 Route::get('channel', [FirebasePushNotificationController::class, 'channel'])->name('notification.channel');
 
-// insert record to activity_log via route
-Route::get('create-order', [OrderController::class, 'create'])->name('create-order-static');
-
 Route::post('login', [LoginController::class, 'login']);
 
 Route::middleware(['auth'])->group(function () {
@@ -31,6 +28,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/', function () {
         return inertia('admin.dashboard.index');
     })->name('dashboard');
+
+    // insert record to activity_log via route
+    Route::get('/create-order', [OrderController::class, 'create'])->name('create-order-static');
+    Route::get('/update-status', [OrderController::class, 'updateStatus']);
+    Route::get('/order-activity', [OrderController::class, 'orderActivity']);
 
     // remove this route if you don't need it
     require_once __DIR__ . '/component.php';
