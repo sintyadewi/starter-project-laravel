@@ -23,7 +23,7 @@ class OrderActivityResource extends JsonResource
         return [
             'id'       => $this->resource->id,
             'activity' => $this->getTemplate($this->event),
-            'date'     => $this->resource->created_at->format('M j, Y h:i A'),
+            'created_at'     => $this->resource->created_at->format('M j, Y h:i A'),
         ];
     }
 
@@ -46,6 +46,7 @@ class OrderActivityResource extends JsonResource
     {
         return 'Order number ' . $this->subject->id
             . ' has been ' . $this->event
+            . ' from ' . $this->resource->getExtraProperty('old.status')
             . ' to ' . $this->resource->getExtraProperty('attributes.status')
             . ' by ' . $this->causer->name;
     }
