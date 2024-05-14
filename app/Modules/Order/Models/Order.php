@@ -46,6 +46,7 @@ class Order extends Model
         return LogOptions::defaults()
             ->logOnly(['total', 'status'])
             ->useLogName('order_activity')
+            ->logOnlyDirty()
             ->setDescriptionForEvent(fn (string $eventName) => "This model has been {$eventName}");
     }
 
