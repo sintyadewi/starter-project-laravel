@@ -6,12 +6,13 @@ namespace App\Modules\Membership\Models;
 
 use Database\Factories\UserFactory;
 use App\Modules\Membership\Traits\Fcmable;
+use App\Modules\Shared\Traits\HasRoleAndPermissionTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
-use jeremykenedy\LaravelRoles\Traits\HasRoleAndPermission;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Activitylog\Traits\CausesActivity;
 use Timedoor\Filter\FilterTrait;
 
 /**
@@ -20,11 +21,12 @@ use Timedoor\Filter\FilterTrait;
 class User extends Authenticatable
 {
     use Fcmable,
+        CausesActivity,
         FilterTrait,
         HasApiTokens,
         HasFactory,
         Notifiable,
-        HasRoleAndPermission;
+        HasRoleAndPermissionTrait;
 
     /**
      * The attributes that are mass assignable.
