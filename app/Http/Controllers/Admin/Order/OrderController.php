@@ -44,10 +44,12 @@ class OrderController extends Controller
     {
         $order = Order::find(6);
 
-        $orderActivities = Activity::query()->where([
-            ['subject_id', $order->id],
-            ['subject_type', $order->getMorphClass()]
-        ])->get();
+        $orderActivities = Activity::query()
+            ->with('causer', 'subject')
+            ->where([
+                ['subject_id', $order->id],
+                ['subject_type', $order->getMorphClass()]
+            ])->get();
 
         return OrderActivityResource::collection($orderActivities);
     }
